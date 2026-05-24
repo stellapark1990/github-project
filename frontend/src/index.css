@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:        #09090f;
+  --surface:   rgba(255,255,255,0.03);
+  --surface-h: rgba(255,255,255,0.055);
+  --border:    rgba(255,255,255,0.08);
+  --border-h:  rgba(255,255,255,0.18);
+
+  --t1: #f1f5f9;
+  --t2: #94a3b8;
+  --t3: #475569;
+
+  --indigo:  #818cf8;
+  --violet:  #a78bfa;
+  --teal:    #34d399;
+  --amber:   #fbbf24;
+  --rose:    #fb7185;
+  --sky:     #38bdf8;
+  --orange:  #fb923c;
+  --pink:    #f472b6;
+
+  --cat-agent:     #818cf8;
+  --cat-rag:       #34d399;
+  --cat-inference: #a78bfa;
+  --cat-train:     #fb923c;
+  --cat-data:      #38bdf8;
+  --cat-eval:      #f472b6;
+  --cat-model:     #4ade80;
+  --cat-app:       #fb7185;
+  --cat-other:     #94a3b8;
+
+  --font-display: 'Syne', sans-serif;
+  --font-stat:    'Bebas Neue', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  --radius-card: 14px;
+  --radius-sm:   6px;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--t2);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    /* Subtle radial glow at top */
+    background-image:
+      radial-gradient(ellipse 90% 40% at 50% -5%, rgba(99,102,241,0.18), transparent),
+      radial-gradient(ellipse 60% 30% at 85% 10%, rgba(167,139,250,0.08), transparent);
+    background-attachment: fixed;
+  }
+
+  * { box-sizing: border-box; }
+  ::selection { background: rgba(129,140,248,0.35); color: var(--t1); }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+}
+
+@layer components {
+  /* ── Glass card ───────────────────────────────────────────────── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: visible;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    background: var(--surface-h);
+    border-color: var(--border-h);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-h);
+  }
+  .card-static {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+  }
+
+  /* ── Tag / Badge ──────────────────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  /* ── Filter button ────────────────────────────────────────────── */
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--border);
+    color: var(--t3);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--border-h);
+    color: var(--t2);
+    background: var(--surface);
+  }
+  .filter-btn.active {
+    background: rgba(129,140,248,0.15);
+    border-color: rgba(129,140,248,0.4);
+    color: var(--indigo);
+  }
+
+  /* ── Mono ─────────────────────────────────────────────────────── */
+  .mono { font-family: var(--font-mono); font-size: 11px; color: var(--t3); }
+
+  /* ── Section title ────────────────────────────────────────────── */
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--t1);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Section label (mono uppercase) ──────────────────────────── */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--t3);
+  }
+
+  /* ── Project list row ─────────────────────────────────────────── */
+  .row {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+  .row:hover {
+    background: var(--surface);
+  }
+
+  /* ── Category tag ─────────────────────────────────────────────── */
+  .cat-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+}
